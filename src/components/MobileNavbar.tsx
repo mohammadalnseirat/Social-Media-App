@@ -1,13 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { BellIcon, HomeIcon, LogOutIcon, UserIcon } from "lucide-react";
-import { SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  useAuth,
+  UserButton,
+} from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import ModeToggle from "./ModeToggle";
 import { Button } from "./ui/button";
 
-async function MobileNavbar() {
-  const user = await currentUser();
+function MobileNavbar() {
+  const { isSignedIn } = useAuth();
 
   return (
     <div className="fixed bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 bottom-0 left-0 w-full bg-white shadow-lg p-2 flex justify-between md:hidden border-t">
@@ -27,7 +34,7 @@ async function MobileNavbar() {
         <TooltipContent>Theme</TooltipContent>
       </Tooltip>
 
-      {user ? (
+      {isSignedIn ? (
         <>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -44,10 +51,7 @@ async function MobileNavbar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href={`/profile/${
-                  user.username ??
-                  user.emailAddresses[0].emailAddress.split("@")[0]
-                }`}
+                href={`/profile`}
                 className="p-2 flex flex-col items-center"
               >
                 <UserIcon className="size-6" />
@@ -55,7 +59,16 @@ async function MobileNavbar() {
             </TooltipTrigger>
             <TooltipContent>Profile</TooltipContent>
           </Tooltip>
-          <UserButton />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SignOutButton>
+                <Button variant="ghost">
+                  <LogOutIcon className="w-5 h-5" />
+                </Button>
+              </SignOutButton>
+            </TooltipTrigger>
+            <TooltipContent>Sign Out</TooltipContent>
+          </Tooltip>
         </>
       ) : (
         <SignInButton mode="modal">
