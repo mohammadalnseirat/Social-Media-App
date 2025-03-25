@@ -50,6 +50,25 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        animation: {
+          borderGlow: "borderGlow 3s linear infinite",
+        },
+        keyframes: {
+          borderGlow: {
+            "0%": {
+              borderImageSource: "linear-gradient(to right, #34d399, #3b82f6)",
+            },
+            "33%": {
+              borderImageSource: "linear-gradient(to right, #f43f5e, #f59e0b)",
+            },
+            "66%": {
+              borderImageSource: "linear-gradient(to right, #a855f7, #ec4899)",
+            },
+            "100%": {
+              borderImageSource: "linear-gradient(to right, #34d399, #3b82f6)",
+            },
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

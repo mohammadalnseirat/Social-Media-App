@@ -39,3 +39,21 @@ export async function syncUser() {
     console.log("Failed to sync user", error);
   }
 }
+
+//! 2-Function To Get User From Database based on The ClerkId:
+export async function getUserByClerkId(clerKId: string) {
+  return await prisma.user.findUnique({
+    where: {
+      clerKId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+          following: true,
+          posts: true,
+        },
+      },
+    },
+  });
+}
