@@ -1,8 +1,11 @@
 import Link from "next/link";
 import DeskTopNavbar from "./DeskTopNavbar";
-import MobileNavbar from "./MobileNavbar";
+import { currentUser } from "@clerk/nextjs/server";
+import { syncUser } from "@/actions/user.action";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const user = await currentUser();
+  if (user) syncUser();
   return (
     <nav className="sticky top-0 border-b bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -21,9 +24,6 @@ const Navbar = () => {
           {/* Desktop Nav Start Here */}
           <DeskTopNavbar />
           {/* Desktop Nav End Here */}
-          {/* Mobile Nav Start Here */}
-          {/* <MobileNavbar /> */}
-          {/* Mobile Nav End Here */}
         </div>
       </div>
     </nav>
