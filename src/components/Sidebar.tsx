@@ -61,7 +61,19 @@ async function Sidebar() {
                     </p>
                     <p className="text-xs text-muted-foreground">Following</p>
                   </div>
-                  <Separator orientation="vertical" />
+                  {/* <Separator orientation="vertical" /> */}
+                  <div>
+                    <p
+                      className={`font-medium ${
+                        user._count.posts === 0
+                          ? "text-red-600"
+                          : "text-green-600"
+                      }`}
+                    >
+                      {user._count.posts}
+                    </p>
+                    <p className="text-xs text-muted-foreground">Posts</p>
+                  </div>
                   <div>
                     <p
                       className={`font-medium ${

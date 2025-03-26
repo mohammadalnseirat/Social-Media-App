@@ -8,6 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import MobileNavbar from "@/components/MobileNavbar";
 import { useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
                 <MobileNavbar />
               </div>
             </TooltipProvider>
+            <Toaster position="top-left" richColors />
           </ThemeProvider>
         </ClerkProvider>
       </body>
