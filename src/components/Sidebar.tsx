@@ -17,12 +17,12 @@ async function Sidebar() {
     <div className="sticky top-20">
       {/* <div className="rounded-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.7)] hover:bg-opacity-80"> */}
       <div
-        className="relative rounded-lg p-[1px] transition-all duration-300 
+        className="relative rounded-lg p-[2px] transition-all duration-300 
       bg-gradient-to-r from-green-400 to-blue-500 
       
       hover:animate-borderGlow"
       >
-        <Card>
+        <Card className="rounded-lg">
           <CardContent className="pt-6">
             <div className="flex flex-col items-center text-center">
               <Link
