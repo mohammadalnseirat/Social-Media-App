@@ -62,7 +62,7 @@ export async function getUserByClerkId(clerKId: string) {
 //! 3-Function To Get UserId from The Database:
 export async function getDbUserId() {
   const { userId: clerkId } = await auth();
-  if (!clerkId) throw new Error("Unauthorized user!");
+  if (!clerkId) return null;
   // ?Find User By ClerkId:
   const user = await getUserByClerkId(clerkId);
   if (!user) {
@@ -76,7 +76,7 @@ export async function getDbUserId() {
 export async function getSuggestedUsers() {
   try {
     const userId = await getDbUserId();
-    if (!userId) throw new Error("Unauthorized user!");
+    if (!userId) return [];
     //* get 6 random users exclude ourselves & users that we already follow
     const randomUsers = await prisma.user.findMany({
       where: {
@@ -123,7 +123,7 @@ export async function toggleFollowUser(targetUserId: string) {
   try {
     const userId = await getDbUserId();
 
-    if (!userId) throw new Error("Unauthorized user!");
+    if (!userId) return;
     if (userId === targetUserId) throw new Error("You can't follow yourself!");
     //* check if user is already following the target user:
     const existingFollowUser = await prisma.follows.findUnique({

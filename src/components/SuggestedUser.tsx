@@ -11,7 +11,7 @@ async function SuggestedUser() {
   if (randomUsers.length > 0) {
     return (
       <div
-        className="relative rounded-lg p-[2px] transition-all duration-300
+        className="  sticky top-20 rounded-lg p-[2px] transition-all duration-300
               bg-gradient-to-r from-green-400 to-blue-500 hover:animate-borderGlow"
       >
         <Card className="rounded-lg">
